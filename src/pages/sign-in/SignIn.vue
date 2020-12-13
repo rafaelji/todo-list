@@ -67,13 +67,16 @@ export default {
         if (this.accessType === "Sign In") {
           await UserService.signIn(this.email, this.password);
           await this.$router.push("/app");
+          this.loading = false;
 
           return;
         }
 
         await UserService.signUp(this.email, this.password);
         await this.$router.push("/app");
+        this.loading = false;
       } catch (error) {
+        this.loading = false;
         console.log(error);
       }
     },
