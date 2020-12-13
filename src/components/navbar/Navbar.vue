@@ -2,7 +2,7 @@
   <div class="center examplex">
     <vs-navbar center-collapsed>
       <template #right>
-        <vs-button @click="navigateToLoginPage" flat >Login</vs-button>
+        <vs-button @click="navigateToLoginPage" flat>Login</vs-button>
       </template>
     </vs-navbar>
   </div>
@@ -10,11 +10,11 @@
 
 <script>
 export default {
-  name: 'NavBar',
+  name: "NavBar",
   methods: {
     navigateToLoginPage() {
-      this.$router.push('/login');
-    }
-  }
-}
+      this.$router.push("/login");
+    },
+  },
+};
 </script>

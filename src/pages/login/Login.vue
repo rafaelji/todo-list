@@ -1,6 +1,6 @@
 <template>
   <div>
-    <NavBar/>
+    <NavBar />
     <h1>Login</h1>
   </div>
 </template>
@@ -9,9 +9,9 @@
 import NavBar from "@/components/navbar/Navbar";
 
 export default {
-  name: 'Login',
+  name: "Login",
   components: {
-    NavBar
-  }
-}
+    NavBar,
+  },
+};
 </script>
