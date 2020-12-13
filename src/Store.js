@@ -6,11 +6,23 @@ Vue.use(Vuex);
 const store = new Vuex.Store({
   state: {
     loggedInUser: {},
-    showNotification: false,
+    notification: {
+      type: "",
+      title: "",
+      message: "",
+    },
   },
   mutations: {
-    storeLoggedInUser(state, payload) {
-      state.loggedInUser = { ...payload };
+    storeLoggedInUser(state, userData) {
+      state.loggedInUser = { ...userData };
+    },
+    showNotification(state, notificationData) {
+      state.notification = { ...notificationData };
+    },
+  },
+  getters: {
+    notification: (state) => {
+      return state.notification;
     },
   },
 });
