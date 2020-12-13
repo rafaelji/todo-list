@@ -3,16 +3,16 @@ import Vuex from "vuex";
 
 Vue.use(Vuex);
 
-const vuex = new Vuex({
+const store = new Vuex.Store({
   state: {
     loggedInUser: {},
     showNotification: false,
   },
   mutations: {
-    storeLoggedInUser(state) {
-      state.loggedInUser = {};
+    storeLoggedInUser(state, payload) {
+      state.loggedInUser = { ...payload };
     },
   },
 });
 
-export default vuex;
+export default store;

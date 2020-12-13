@@ -2,11 +2,23 @@ import { auth } from "@/services/Api";
 
 class UserService {
   async signUp(email, password) {
-    return auth.createUserWithEmailAndPassword(email, password);
+    const result = await auth.createUserWithEmailAndPassword(email, password);
+
+    return {
+      uid: result.user.uid,
+      displayName: result.user.displayName,
+      email: result.user.email,
+    };
   }
 
   async signIn(email, password) {
-    return auth.signInWithEmailAndPassword(email, password);
+    const result = await auth.signInWithEmailAndPassword(email, password);
+
+    return {
+      uid: result.user.uid,
+      displayName: result.user.displayName,
+      email: result.user.email,
+    };
   }
 
   async signOut() {

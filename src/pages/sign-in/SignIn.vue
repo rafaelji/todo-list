@@ -64,15 +64,21 @@ export default {
       try {
         this.loading = true;
 
-        if (this.accessType === "Sign In") {
-          await UserService.signIn(this.email, this.password);
-          await this.$router.push("/app");
-          this.loading = false;
+        let user;
 
-          return;
+        if (this.accessType === "Sign In") {
+          user = await UserService.signIn(this.email, this.password);
         }
 
-        await UserService.signUp(this.email, this.password);
+        if (this.accessType === "Sign Up") {
+          user = await UserService.signUp(this.email, this.password);
+        }
+
+        if (!user) {
+          throw new Error("Incorrect access type.");
+        }
+
+        this.$store.commit("storeLoggedInUser", user);
         await this.$router.push("/app");
         this.loading = false;
       } catch (error) {
