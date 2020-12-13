@@ -2,7 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "@/pages/home/Home";
 import SignIn from "@/pages/sign-in/SignIn";
-import { auth } from "./services/api";
+import { auth } from "./services/Api";
 
 Vue.use(VueRouter);
 
