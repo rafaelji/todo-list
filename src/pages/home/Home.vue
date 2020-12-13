@@ -9,8 +9,19 @@
             lead="Making a to-do list has never been easier"
           >
             <p>Sign up to start creating your own lists</p>
-            <b-button variant="primary" class="mr-1" href="#">Sign up</b-button>
-            <b-button variant="outline-secondary" href="#">Sign in</b-button>
+            <b-button
+              @click="navigateTo('sign-up')"
+              variant="primary"
+              class="mr-1"
+              href="#"
+              >Sign up</b-button
+            >
+            <b-button
+              @click="navigateTo('sign-in')"
+              variant="outline-secondary"
+              href="#"
+              >Sign in</b-button
+            >
           </b-jumbotron>
         </b-col>
       </b-row>
@@ -25,6 +36,11 @@ export default {
   name: "Home",
   components: {
     NavBar,
+  },
+  methods: {
+    navigateTo(url) {
+      this.$router.push(url);
+    },
   },
 };
 </script>
