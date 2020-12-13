@@ -1,6 +1,7 @@
 import Vue from "vue";
 import App from "./App.vue";
 import router from "./Router";
+import store from "./Store";
 import { BootstrapVue, IconsPlugin } from "bootstrap-vue";
 import { auth } from "./services/Api";
 
@@ -18,6 +19,7 @@ auth.onAuthStateChanged(() => {
   if (!app) {
     new Vue({
       router,
+      store,
       render: (h) => h(App),
     }).$mount("#app");
   }
