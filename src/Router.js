@@ -2,7 +2,6 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "@/pages/home/Home";
 import SignIn from "@/pages/sign-in/SignIn";
-import ToDoList from "@/pages/todo-list/ToDoList";
 import { auth } from "./services/api";
 
 Vue.use(VueRouter);
@@ -16,7 +15,7 @@ const router = new VueRouter({
     { path: "/sign-up", component: SignIn },
     {
       path: "/app",
-      component: ToDoList,
+      component: () => import("@/pages/todo-list/ToDoList"),
       meta: {
         requiresAuth: true,
       },
