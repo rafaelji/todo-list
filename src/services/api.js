@@ -1,4 +1,5 @@
 import * as firebase from "firebase/app";
+import "firebase/auth";
 
 const firebaseConfig = {
   apiKey: process.env.VUE_APP_API_KEY,
@@ -10,4 +11,8 @@ const firebaseConfig = {
   measurementId: process.env.VUE_APP_MEASUREMENT_ID,
 };
 
-firebase.initializeApp(firebaseConfig);
+firebase.default.initializeApp(firebaseConfig);
+
+const auth = firebase.default.auth();
+
+export { auth };
