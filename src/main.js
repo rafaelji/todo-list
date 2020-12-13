@@ -15,12 +15,20 @@ Vue.use(IconsPlugin);
 
 let app;
 
-auth.onAuthStateChanged(() => {
+auth.onAuthStateChanged((user) => {
   if (!app) {
     new Vue({
       router,
       store,
       render: (h) => h(App),
     }).$mount("#app");
+  }
+
+  if (user) {
+    store.commit("storeLoggedInUser", {
+      uid: user.uid,
+      displayName: user.displayName,
+      email: user.email,
+    });
   }
 });
