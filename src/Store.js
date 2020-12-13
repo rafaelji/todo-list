@@ -19,10 +19,16 @@ const store = new Vuex.Store({
     showNotification(state, notificationData) {
       state.notification = { ...notificationData };
     },
+    removeCurrentUser(state) {
+      state.loggedInUser = {};
+    },
   },
   getters: {
     notification: (state) => {
       return state.notification;
+    },
+    currentUser: (state) => {
+      return state.loggedInUser;
     },
   },
 });
