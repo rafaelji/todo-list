@@ -79,10 +79,19 @@ export default {
         }
 
         this.$store.commit("storeLoggedInUser", user);
+        this.$store.commit("showNotification", {
+          type: "success",
+          title: "Success",
+          message: `Welcome ${user.email}!`,
+        });
+
         await this.$router.push("/app");
         this.loading = false;
       } catch (error) {
         this.loading = false;
+        this.$store.commit("showNotification", {
+          type: "error",
+        });
         console.log(error);
       }
     },
