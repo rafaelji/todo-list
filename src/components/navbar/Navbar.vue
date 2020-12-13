@@ -8,14 +8,55 @@
 
     <b-collapse id="nav-collapse" is-nav>
       <b-navbar-nav class="ml-auto">
-        <router-link to="/sign-in" class="nav-link">Sign in</router-link>
+        <router-link v-if="!currentUser.email" to="/sign-in" class="nav-link"
+          >Sign in</router-link
+        >
+        <b-dropdown
+          right
+          v-if="currentUser.email"
+          id="signout-dropdown"
+          variant="info"
+          :text="currentUser.email"
+        >
+          <b-dropdown-divider></b-dropdown-divider>
+          <b-dropdown-item @click="signOut">
+            <b-icon icon="power" aria-hidden="true" class="mr-1" />
+            Sign Out
+          </b-dropdown-item>
+        </b-dropdown>
       </b-navbar-nav>
     </b-collapse>
   </b-navbar>
 </template>
 
 <script>
+import UserService from "@/services/UserService";
+
 export default {
   name: "NavBar",
+  computed: {
+    currentUser() {
+      return this.$store.getters.currentUser;
+    },
+  },
+  methods: {
+    async signOut() {
+      try {
+        await UserService.signOut();
+        await this.$router.push("/");
+        this.$store.commit("removeCurrentUser");
+        this.$store.commit("showNotification", {
+          type: "info",
+          title: "Adios amigo",
+          message: `Bye bye!`,
+        });
+      } catch (error) {
+        this.$store.commit("showNotification", {
+          type: "error",
+        });
+        console.log(error);
+      }
+    },
+  },
 };
 </script>
