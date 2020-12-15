@@ -2,14 +2,16 @@
   <b-modal :id="`bv-modal-${currentToDoList.id}`" hide-footer hide-header-close>
     <template #modal-title>
       <b-form-input
-        ref="title"
         v-model="currentToDoList.title"
         placeholder="Enter To Do List title"
-        class="border-0"
       ></b-form-input>
     </template>
-    <div class="d-block text-center">
-      <h3>Hello From This Modal!</h3>
+    <div class="d-block text-left">
+      <ul>
+        <li v-for="item in currentToDoList.items" :key="item.id">
+          {{ item.value }}
+        </li>
+      </ul>
     </div>
     <b-button
       class="mt-3"
@@ -28,10 +30,6 @@ export default {
   mounted() {
     this.$root.$on("bv::modal::hidden", () => {
       this.$store.commit("editToDoList", null);
-    });
-
-    this.$root.$on("bv::modal::shown", () => {
-      this.$refs.title.$el.focus();
     });
   },
   computed: {
