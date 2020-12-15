@@ -32,11 +32,5 @@ export default {
     imgUrl: String,
     items: Array,
   },
-  data: () => ({
-    id: this.props.id,
-    title: this.props.title,
-    imgUrl: this.props.imgUrl,
-    items: this.props.items,
-  }),
 };
 </script>
