@@ -1,7 +1,5 @@
 <template>
-  <div>
-    <b-toast id="toast" />
-  </div>
+  <b-toast id="toast" />
 </template>
 
 <script>
