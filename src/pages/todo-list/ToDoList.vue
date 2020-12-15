@@ -36,10 +36,14 @@ export default {
   components: { NavBar, ToDoListItem },
   methods: {
     addList() {
+      const min = Math.ceil(1);
+      const max = Math.floor(100);
       this.$store.commit("addNewToDoList", {
         id: new Date().getTime(),
         title: `#${this.toDoList.length + 1} New List`,
-        imgUrl: "",
+        imgUrl: `https://picsum.photos/600/300/?image=${
+          Math.floor(Math.random() * (max - min + 1)) + min
+        }`,
         items: [
           {
             id: new Date().getTime(),
