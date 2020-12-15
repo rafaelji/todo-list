@@ -16,7 +16,7 @@
         </ul>
       </b-card-text>
 
-      <b-button variant="primary" class="float-left">
+      <b-button @click="editList" variant="primary" class="float-left">
         <b-icon icon="pencil" aria-hidden="true" />
       </b-button>
       <b-button @click="removeList" variant="danger" class="float-right">
@@ -41,6 +41,9 @@ export default {
   methods: {
     removeList() {
       this.$store.commit("removeToDoList", this.id);
+    },
+    editList() {
+      this.$store.commit("editToDoList", this.id);
     },
   },
 };

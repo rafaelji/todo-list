@@ -1,24 +1,16 @@
 <template>
-  <div>
+  <b-modal :id="`bv-modal-${currentToDoList.id}`" hide-footer>
+    <template #modal-title>{{ currentToDoList.title }}</template>
+    <div class="d-block text-center">
+      <h3>Hello From This Modal!</h3>
+    </div>
     <b-button
-      id="show-btn"
-      @click="$bvModal.show(`bv-modal-${currentToDoList.id}`)"
-      >Open Modal</b-button
+      class="mt-3"
+      block
+      @click="$bvModal.hide(`bv-modal-${currentToDoList.id}`)"
+      >Close Me</b-button
     >
-
-    <b-modal :id="`bv-modal-${currentToDoList.id}`" hide-footer>
-      <template #modal-title>{{ currentToDoList.title }}</template>
-      <div class="d-block text-center">
-        <h3>Hello From This Modal!</h3>
-      </div>
-      <b-button
-        class="mt-3"
-        block
-        @click="$bvModal.hide(`bv-modal-${currentToDoList.id}`)"
-        >Close Me</b-button
-      >
-    </b-modal>
-  </div>
+  </b-modal>
 </template>
 <script>
 export default {
@@ -29,6 +21,11 @@ export default {
     imgUrl: String,
     items: Array,
   },
+  mounted() {
+    this.$root.$on("bv::modal::hidden", () => {
+      this.$store.commit("editToDoList", null);
+    });
+  },
   computed: {
     currentToDoList() {
       return this.$store.getters.currentToDoList[
@@ -36,6 +33,14 @@ export default {
           (item) => item.id === this.id
         )
       ];
+    },
+    toDoListSelectedToEdit() {
+      return this.$store.getters.toDoListSelectedToEdit;
+    },
+  },
+  watch: {
+    toDoListSelectedToEdit(id) {
+      this.$bvModal.show(`bv-modal-${id}`);
     },
   },
 };
