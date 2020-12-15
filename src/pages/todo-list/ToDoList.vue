@@ -3,13 +3,13 @@
     <NavBar />
     <b-container fluid>
       <b-row>
-        <b-col sm="12" md="4" class="d-flex justify-content-center">
+        <b-col cols="12" class="cards-column">
           <b-card
             title="Card Title"
             img-src="https://picsum.photos/600/300/?image=26"
             img-alt="Image"
             img-top
-            tag="article"
+            tag="div"
             style="max-width: 20rem"
             class="mb-2"
           >
@@ -38,3 +38,11 @@ export default {
   components: { NavBar },
 };
 </script>
+
+<style scoped>
+.cards-column {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+</style>
