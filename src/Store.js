@@ -13,6 +13,12 @@ const store = new Vuex.Store({
     },
     toDoList: [],
     toDoListToEditId: null,
+    currentEditingToDoList: {
+      id: "",
+      title: "",
+      imgUrl: "",
+      items: [],
+    },
   },
   mutations: {
     storeLoggedInUser(state, userData) {
@@ -38,6 +44,9 @@ const store = new Vuex.Store({
     },
     editToDoList(state, toDoListIdToEditId) {
       state.toDoListToEditId = toDoListIdToEditId;
+    },
+    setCurrentEditingToDoList(state, currentToDoListEditing) {
+      state.currentEditingToDoList = currentToDoListEditing;
     },
   },
   getters: {

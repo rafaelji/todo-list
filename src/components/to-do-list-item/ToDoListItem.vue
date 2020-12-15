@@ -1,6 +1,6 @@
 <template>
   <div>
-    <EditListModal :id="id" :title="title" />
+    <EditListModal :id="id" />
     <b-card
       :img-src="imgUrl"
       img-alt="Image"
