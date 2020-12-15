@@ -9,7 +9,13 @@
     <div class="d-block text-left">
       <ul>
         <li v-for="item in currentToDoList.items" :key="item.id">
-          {{ item.value }}
+          <b-form-input
+            :value="item.value"
+            placeholder="Enter To Do List title"
+            @keyup="
+              (event) => updateItem(item.id, event.target.value, item.done)
+            "
+          ></b-form-input>
         </li>
       </ul>
     </div>
@@ -31,6 +37,18 @@ export default {
     this.$root.$on("bv::modal::hidden", () => {
       this.$store.commit("editToDoList", null);
     });
+  },
+  methods: {
+    updateItem(id, value, done) {
+      this.$store.commit("setCurrentEditingToDoList", {
+        ...this.currentToDoList,
+        items: this.$set(
+          this.currentToDoList.items,
+          this.currentToDoList.items.findIndex((item) => item.id === id),
+          { id, value, done }
+        ),
+      });
+    },
   },
   computed: {
     currentToDoList() {
