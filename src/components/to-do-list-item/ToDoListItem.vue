@@ -14,7 +14,12 @@
       </ul>
     </b-card-text>
 
-    <b-button block href="#" variant="primary">Edit</b-button>
+    <b-button variant="primary" class="float-left">
+      <b-icon icon="pencil" aria-hidden="true" />
+    </b-button>
+    <b-button variant="danger" class="float-right">
+      <b-icon icon="trash" aria-hidden="true" />
+    </b-button>
   </b-card>
 </template>
 
