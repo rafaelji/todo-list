@@ -25,6 +25,9 @@
             <b-button block href="#" variant="primary">Edit</b-button>
           </b-card>
         </b-col>
+        <b-button pill variant="primary" class="add-item-button" size="lg">
+          <b-icon icon="plus" aria-hidden="true"
+        /></b-button>
       </b-row>
     </b-container>
   </div>
@@ -44,5 +47,23 @@ export default {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+}
+
+@media only screen and (max-width: 1023px) {
+  .add-item-button {
+    position: absolute;
+    right: 1rem;
+    bottom: 1rem;
+    padding: 1.3rem 1.5rem;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .add-item-button {
+    position: absolute;
+    left: calc(50% - (1.5rem + 12.5px));
+    bottom: 1rem;
+    padding: 1.3rem 1.5rem;
+  }
 }
 </style>
