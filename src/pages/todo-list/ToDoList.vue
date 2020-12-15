@@ -4,28 +4,14 @@
     <b-container fluid>
       <b-row>
         <b-col cols="12" class="cards-column">
-          <b-card
+          <ToDoListItem
             v-for="item in list"
             :key="item.id"
-            :title="'Card Title' + item.title"
-            img-src="https://picsum.photos/600/300/?image=26"
-            img-alt="Image"
-            img-top
-            tag="div"
-            style="max-width: 20rem"
-            class="mb-2"
-          >
-            <b-card-text>
-              <ul>
-                <li>Fazer coisa 1</li>
-                <li>Fazer coisa 1</li>
-                <li>Fazer coisa 1</li>
-                <li>...</li>
-              </ul>
-            </b-card-text>
-
-            <b-button block href="#" variant="primary">Edit</b-button>
-          </b-card>
+            :id="item.id"
+            :title="item.title"
+            :img-url="item.imgUrl"
+            :items="item.items"
+          />
         </b-col>
       </b-row>
     </b-container>
@@ -43,18 +29,19 @@
 
 <script>
 import NavBar from "@/components/navbar/Navbar";
+import ToDoListItem from "@/components/to-do-list-item/ToDoListItem";
 
 export default {
   name: "ToDoList",
   data: () => ({
     list: [],
   }),
-  components: { NavBar },
+  components: { NavBar, ToDoListItem },
   methods: {
     addList() {
       this.list.push({
         id: new Date().getTime(),
-        title: "",
+        title: "New List",
         imgUrl: "",
         items: [],
       });
