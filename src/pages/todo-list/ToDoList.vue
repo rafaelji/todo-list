@@ -5,7 +5,7 @@
       <b-row>
         <b-col cols="12" class="cards-column">
           <ToDoListItem
-            v-for="item in list"
+            v-for="item in toDoList"
             :key="item.id"
             :id="item.id"
             :title="item.title"
@@ -33,18 +33,36 @@ import ToDoListItem from "@/components/to-do-list-item/ToDoListItem";
 
 export default {
   name: "ToDoList",
-  data: () => ({
-    list: [],
-  }),
   components: { NavBar, ToDoListItem },
   methods: {
     addList() {
-      this.list.push({
+      this.$store.commit("addNewToDoList", {
         id: new Date().getTime(),
         title: "New List",
         imgUrl: "",
-        items: [],
+        items: [
+          {
+            id: new Date().getTime(),
+            value: "#1 task",
+            done: false,
+          },
+          {
+            id: new Date().getTime() + 1,
+            value: "#2 task",
+            done: false,
+          },
+          {
+            id: new Date().getTime() + 2,
+            value: "#3 task",
+            done: false,
+          },
+        ],
       });
+    },
+  },
+  computed: {
+    toDoList() {
+      return this.$store.getters.currentToDoList;
     },
   },
 };

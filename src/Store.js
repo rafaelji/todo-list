@@ -11,6 +11,7 @@ const store = new Vuex.Store({
       title: "",
       message: "",
     },
+    toDoList: [],
   },
   mutations: {
     storeLoggedInUser(state, userData) {
@@ -22,6 +23,18 @@ const store = new Vuex.Store({
     removeCurrentUser(state) {
       state.loggedInUser = {};
     },
+    addNewToDoList(state, newTodoData) {
+      state.toDoList = [...state.toDoList, newTodoData];
+    },
+    removeToDoList(state, toDoListToDelete) {
+      const currentTodoList = [...state.toDoList];
+      currentTodoList.splice(
+        currentTodoList.findIndex((item) => item.id === toDoListToDelete.id),
+        1
+      );
+
+      state.toDoList = [...currentTodoList];
+    },
   },
   getters: {
     notification: (state) => {
@@ -29,6 +42,9 @@ const store = new Vuex.Store({
     },
     currentUser: (state) => {
       return state.loggedInUser;
+    },
+    currentToDoList: (state) => {
+      return state.toDoList;
     },
   },
 });
