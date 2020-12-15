@@ -17,7 +17,7 @@
     <b-button variant="primary" class="float-left">
       <b-icon icon="pencil" aria-hidden="true" />
     </b-button>
-    <b-button variant="danger" class="float-right">
+    <b-button @click="removeList" variant="danger" class="float-right">
       <b-icon icon="trash" aria-hidden="true" />
     </b-button>
   </b-card>
@@ -31,6 +31,11 @@ export default {
     title: String,
     imgUrl: String,
     items: Array,
+  },
+  methods: {
+    removeList() {
+      this.$store.commit("removeToDoList", this.id);
+    },
   },
 };
 </script>

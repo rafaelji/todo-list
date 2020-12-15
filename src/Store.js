@@ -26,10 +26,10 @@ const store = new Vuex.Store({
     addNewToDoList(state, newTodoData) {
       state.toDoList = [...state.toDoList, newTodoData];
     },
-    removeToDoList(state, toDoListToDelete) {
+    removeToDoList(state, toDoListIdToDelete) {
       const currentTodoList = [...state.toDoList];
       currentTodoList.splice(
-        currentTodoList.findIndex((item) => item.id === toDoListToDelete.id),
+        currentTodoList.findIndex((item) => item.id === toDoListIdToDelete),
         1
       );
 
