@@ -38,7 +38,7 @@ export default {
     addList() {
       this.$store.commit("addNewToDoList", {
         id: new Date().getTime(),
-        title: "New List",
+        title: `#${this.toDoList.length + 1} New List`,
         imgUrl: "",
         items: [
           {
