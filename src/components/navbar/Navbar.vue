@@ -11,19 +11,16 @@
         <router-link v-if="!currentUser.email" to="/sign-in" class="nav-link"
           >Sign in</router-link
         >
-        <b-dropdown
-          right
-          v-if="currentUser.email"
-          id="signout-dropdown"
-          variant="info"
-          :text="currentUser.email"
-        >
-          <b-dropdown-divider></b-dropdown-divider>
+
+        <b-nav-item-dropdown v-if="currentUser.email" right>
+          <template #button-content>
+            <em>{{ currentUser.email }}</em>
+          </template>
           <b-dropdown-item @click="signOut">
             <b-icon icon="power" aria-hidden="true" class="mr-1" />
             Sign Out
           </b-dropdown-item>
-        </b-dropdown>
+        </b-nav-item-dropdown>
       </b-navbar-nav>
     </b-collapse>
   </b-navbar>
