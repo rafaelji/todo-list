@@ -65,17 +65,6 @@ export default {
     toDoListSelectedToEdit() {
       return this.$store.getters.toDoListSelectedToEdit;
     },
-    vModelTitle: {
-      get() {
-        return this.currentToDoList.title;
-      },
-      set(value) {
-        this.$store.commit("setCurrentEditingToDoList", {
-          ...this.currentToDoList,
-          title: value,
-        });
-      },
-    },
   },
   watch: {
     toDoListSelectedToEdit(id) {
