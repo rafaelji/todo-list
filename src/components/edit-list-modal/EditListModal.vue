@@ -18,16 +18,12 @@
             :id="item.id"
             :done="item.done"
           />
-          <b-form-input
-            class="task-input"
-            :value="item.value"
-            placeholder="Enter task"
-            @keyup="
-              (event) =>
-                updateTaskDescription(item.id, event.target.value, item.done)
-            "
-            :class="item.done ? 'input-with-line-through' : ''"
-          ></b-form-input>
+          <TaskDescriptionInput
+            :listId="id"
+            :id="item.id"
+            :description="item.value"
+            :done="item.done"
+          />
           <b-button
             @click="() => removeTask(item.id)"
             size="sm"
@@ -46,10 +42,11 @@
 </template>
 <script>
 import TaskDoneStatusCheckbox from "@/components/task-done-status-checkbox/TaskDoneStatusCheckbox";
+import TaskDescriptionInput from "@/components/task-description-input/TaskDescriptionInput";
 
 export default {
   name: "EditListModal",
-  components: { TaskDoneStatusCheckbox },
+  components: { TaskDescriptionInput, TaskDoneStatusCheckbox },
   props: {
     id: Number,
   },
@@ -97,16 +94,6 @@ export default {
         }),
       });
     },
-    updateTaskDescription(id, value, done) {
-      this.$store.commit("setCurrentEditingToDoList", {
-        ...this.currentToDoList,
-        items: this.$set(
-          this.currentToDoList.items,
-          this.currentToDoList.items.findIndex((item) => item.id === id),
-          { id, value, done }
-        ),
-      });
-    },
   },
   computed: {
     currentToDoList() {
@@ -143,16 +130,8 @@ h5.modal-title {
   width: 100%;
 }
 
-.task-input {
-  margin-bottom: 0.5rem;
-}
-
 .task-list {
   list-style-type: none;
   padding-inline-start: 0 !important;
-}
-
-.input-with-line-through {
-  text-decoration-line: line-through;
 }
 </style>
