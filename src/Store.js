@@ -30,8 +30,20 @@ const store = new Vuex.Store({
     showNotification(state, notificationData) {
       state.notification = { ...notificationData };
     },
-    removeCurrentUser(state) {
+    removeCurrentUserData(state) {
       state.loggedInUser = {};
+      state.notification = {
+        type: "",
+        title: "",
+        message: "",
+      };
+      state.toDoList = [];
+      state.toDoListToEditId = null;
+      state.currentEditingToDoList = {
+        id: "",
+        title: "",
+        items: [],
+      };
     },
     addNewToDoList(state, newTodoData) {
       state.toDoList = [...state.toDoList, newTodoData];

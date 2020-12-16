@@ -41,7 +41,7 @@ export default {
       try {
         await UserService.signOut();
         await this.$router.push("/");
-        this.$store.commit("removeCurrentUser");
+        this.$store.commit("removeCurrentUserData");
         this.$store.commit("showNotification", {
           type: "info",
           title: "Adios amigo",
