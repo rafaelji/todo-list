@@ -7,13 +7,27 @@
       ></b-form-input>
     </template>
     <div class="d-block text-left">
-      <ul>
-        <li v-for="item in currentToDoList.items" :key="item.id">
+      <ul class="task-list">
+        <li
+          v-for="item in currentToDoList.items"
+          :key="item.id"
+          class="d-flex align-items-baseline"
+        >
+          <b-form-checkbox
+            :id="`todo-item-done${item.id}`"
+            :name="`todo-item-done${item.id}`"
+            :value="true"
+            :unchecked-value="false"
+            size="lg"
+            @change="(done) => updateTaskDoneStatus(item.id, done)"
+          />
           <b-form-input
+            class="task-input"
             :value="item.value"
-            placeholder="Enter To Do List title"
+            placeholder="Enter task"
             @keyup="
-              (event) => updateItem(item.id, event.target.value, item.done)
+              (event) =>
+                updateTaskDescription(item.id, event.target.value, item.done)
             "
           ></b-form-input>
         </li>
@@ -23,7 +37,7 @@
       class="mt-3"
       block
       @click="$bvModal.hide(`bv-modal-${currentToDoList.id}`)"
-      >Close Me</b-button
+      >Done</b-button
     >
   </b-modal>
 </template>
@@ -39,7 +53,21 @@ export default {
     });
   },
   methods: {
-    updateItem(id, value, done) {
+    updateTaskDoneStatus(id, done) {
+      const listIndex = this.currentToDoList.items.findIndex(
+        (item) => item.id === id
+      );
+
+      this.$store.commit("setCurrentEditingToDoList", {
+        ...this.currentToDoList,
+        items: this.$set(this.currentToDoList.items, listIndex, {
+          id,
+          value: this.currentToDoList.items[listIndex].value,
+          done,
+        }),
+      });
+    },
+    updateTaskDescription(id, value, done) {
       this.$store.commit("setCurrentEditingToDoList", {
         ...this.currentToDoList,
         items: this.$set(
@@ -83,5 +111,14 @@ export default {
 <style>
 h5.modal-title {
   width: 100%;
+}
+
+.task-input {
+  margin-bottom: 0.5rem;
+}
+
+.task-list {
+  list-style-type: none;
+  padding-inline-start: 0 !important;
 }
 </style>
