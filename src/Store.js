@@ -20,6 +20,9 @@ const store = new Vuex.Store({
     },
   },
   mutations: {
+    setupToDoList(state, list) {
+      state.toDoList = list;
+    },
     storeLoggedInUser(state, userData) {
       state.loggedInUser = { ...userData };
     },
