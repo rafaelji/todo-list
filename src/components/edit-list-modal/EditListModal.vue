@@ -1,5 +1,5 @@
 <template>
-  <b-modal :id="`bv-modal-${currentToDoList.id}`" hide-footer hide-header-close>
+  <b-modal :id="`bv-modal-${currentToDoList.id}`" hide-footer>
     <template #modal-title>
       <b-form-input
         v-model="currentToDoList.title"
@@ -42,13 +42,10 @@
           </b-button>
         </li>
       </ul>
+      <b-button @click="addTask" size="sm" variant="primary" block>
+        <b-icon icon="plus" aria-hidden="true" /> Add task
+      </b-button>
     </div>
-    <b-button
-      class="mt-3"
-      block
-      @click="$bvModal.hide(`bv-modal-${currentToDoList.id}`)"
-      >Done</b-button
-    >
   </b-modal>
 </template>
 <script>
@@ -63,6 +60,16 @@ export default {
     });
   },
   methods: {
+    addTask() {
+      this.$store.commit("setCurrentEditingToDoList", {
+        ...this.currentToDoList,
+        items: this.currentToDoList.items.push({
+          id: new Date().getTime(),
+          value: "",
+          done: false,
+        }),
+      });
+    },
     removeTask(id) {
       const list = this.currentToDoList.items;
       const index = this.currentToDoList.items.findIndex(
