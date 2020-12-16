@@ -13,14 +13,10 @@
           :key="item.id"
           class="d-flex align-items-baseline"
         >
-          <b-form-checkbox
-            :id="`todo-item-done${item.id}`"
-            :name="`todo-item-done${item.id}`"
-            v-model="item.done"
-            :value="true"
-            :unchecked-value="false"
-            size="lg"
-            @change="(done) => updateTaskDoneStatus(item.id, done)"
+          <TaskDoneStatusCheckbox
+            :listId="id"
+            :id="item.id"
+            :done="item.done"
           />
           <b-form-input
             class="task-input"
@@ -49,8 +45,11 @@
   </b-modal>
 </template>
 <script>
+import TaskDoneStatusCheckbox from "@/components/task-done-status-checkbox/TaskDoneStatusCheckbox";
+
 export default {
   name: "EditListModal",
+  components: { TaskDoneStatusCheckbox },
   props: {
     id: Number,
   },
