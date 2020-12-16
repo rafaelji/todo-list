@@ -65,20 +65,6 @@ export default {
         }),
       });
     },
-    updateTaskDoneStatus(id, done) {
-      const listIndex = this.currentToDoList.items.findIndex(
-        (item) => item.id === id
-      );
-
-      this.$store.commit("setCurrentEditingToDoList", {
-        ...this.currentToDoList,
-        items: this.$set(this.currentToDoList.items, listIndex, {
-          id,
-          value: this.currentToDoList.items[listIndex].value,
-          done,
-        }),
-      });
-    },
   },
   computed: {
     currentToDoList() {
