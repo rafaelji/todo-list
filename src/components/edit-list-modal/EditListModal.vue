@@ -27,9 +27,7 @@
           <RemoveTaskButton :id="item.id" :listId="id" />
         </li>
       </ul>
-      <b-button @click="addTask" size="sm" variant="primary" block>
-        <b-icon icon="plus" aria-hidden="true" /> Add task
-      </b-button>
+      <AddTaskButton :listId="id" />
     </div>
   </b-modal>
 </template>
@@ -37,10 +35,12 @@
 import TaskDoneStatusCheckbox from "@/components/task-done-status-checkbox/TaskDoneStatusCheckbox";
 import TaskDescriptionInput from "@/components/task-description-input/TaskDescriptionInput";
 import RemoveTaskButton from "@/components/remove-task-button/RemoveTaskButton";
+import AddTaskButton from "@/components/add-tak-button/AddTaskButton";
 
 export default {
   name: "EditListModal",
   components: {
+    AddTaskButton,
     RemoveTaskButton,
     TaskDescriptionInput,
     TaskDoneStatusCheckbox,
@@ -53,18 +53,6 @@ export default {
       this.$store.commit("editToDoList", null);
       this.$store.dispatch("updateToDoList", this.currentToDoList);
     });
-  },
-  methods: {
-    addTask() {
-      this.$store.commit("setCurrentEditingToDoList", {
-        ...this.currentToDoList,
-        items: this.currentToDoList.items.push({
-          id: new Date().getTime(),
-          value: "",
-          done: false,
-        }),
-      });
-    },
   },
   computed: {
     currentToDoList() {
