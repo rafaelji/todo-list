@@ -11,8 +11,14 @@
     >
       <b-card-text>
         <h1>{{ title }}</h1>
-        <ul>
-          <li v-for="item in items" :key="item.id">{{ item.value }}</li>
+        <ul class="task-list">
+          <li
+            v-for="item in items"
+            :key="item.id"
+            :class="item.done ? 'task-done' : ''"
+          >
+            {{ item.value }}
+          </li>
         </ul>
       </b-card-text>
 
@@ -48,3 +54,14 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.task-list {
+  list-style-type: none;
+  padding-inline-start: 0 !important;
+}
+
+.task-done {
+  text-decoration-line: line-through;
+}
+</style>

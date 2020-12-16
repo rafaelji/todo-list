@@ -29,6 +29,7 @@
               (event) =>
                 updateTaskDescription(item.id, event.target.value, item.done)
             "
+            :class="item.done ? 'input-with-line-through' : ''"
           ></b-form-input>
         </li>
       </ul>
@@ -120,5 +121,9 @@ h5.modal-title {
 .task-list {
   list-style-type: none;
   padding-inline-start: 0 !important;
+}
+
+.input-with-line-through {
+  text-decoration-line: line-through;
 }
 </style>
