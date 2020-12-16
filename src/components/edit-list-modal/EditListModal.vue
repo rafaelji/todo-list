@@ -24,14 +24,7 @@
             :description="item.value"
             :done="item.done"
           />
-          <b-button
-            @click="() => removeTask(item.id)"
-            size="sm"
-            variant="danger"
-            class="float-right ml-2"
-          >
-            <b-icon icon="x" aria-hidden="true" />
-          </b-button>
+          <RemoveTaskButton :id="item.id" :listId="id" />
         </li>
       </ul>
       <b-button @click="addTask" size="sm" variant="primary" block>
@@ -43,10 +36,15 @@
 <script>
 import TaskDoneStatusCheckbox from "@/components/task-done-status-checkbox/TaskDoneStatusCheckbox";
 import TaskDescriptionInput from "@/components/task-description-input/TaskDescriptionInput";
+import RemoveTaskButton from "@/components/remove-task-button/RemoveTaskButton";
 
 export default {
   name: "EditListModal",
-  components: { TaskDescriptionInput, TaskDoneStatusCheckbox },
+  components: {
+    RemoveTaskButton,
+    TaskDescriptionInput,
+    TaskDoneStatusCheckbox,
+  },
   props: {
     id: Number,
   },
@@ -65,19 +63,6 @@ export default {
           value: "",
           done: false,
         }),
-      });
-    },
-    removeTask(id) {
-      const list = this.currentToDoList.items;
-      const index = this.currentToDoList.items.findIndex(
-        (item) => item.id === id
-      );
-
-      list.splice(index, 1);
-
-      this.$store.commit("setCurrentEditingToDoList", {
-        ...this.currentToDoList,
-        items: list,
       });
     },
     updateTaskDoneStatus(id, done) {
