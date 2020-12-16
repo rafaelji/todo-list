@@ -40,7 +40,7 @@ export default {
     async signOut() {
       try {
         await UserService.signOut();
-        await this.$router.push("/");
+        await this.$router.push("/").catch(() => {});
         this.$store.commit("removeCurrentUserData");
         this.$store.commit("showNotification", {
           type: "info",

@@ -10,17 +10,24 @@
           >
             <p>Sign up to start creating your own lists</p>
             <b-button
+              v-if="!currentUser.email"
               @click="navigateTo('sign-up')"
               variant="primary"
               class="mr-1"
-              href="#"
               >Sign up</b-button
             >
             <b-button
+              v-if="!currentUser.email"
               @click="navigateTo('sign-in')"
               variant="outline-secondary"
-              href="#"
               >Sign in</b-button
+            >
+            <b-button
+              v-if="currentUser.email"
+              @click="navigateTo('app')"
+              variant="primary"
+              class="mr-1"
+              >Go to do list page</b-button
             >
           </b-jumbotron>
         </b-col>
@@ -40,6 +47,11 @@ export default {
   methods: {
     navigateTo(url) {
       this.$router.push(url);
+    },
+  },
+  computed: {
+    currentUser() {
+      return this.$store.getters.currentUser;
     },
   },
 };
