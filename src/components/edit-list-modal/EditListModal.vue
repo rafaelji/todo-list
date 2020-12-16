@@ -16,6 +16,7 @@
           <b-form-checkbox
             :id="`todo-item-done${item.id}`"
             :name="`todo-item-done${item.id}`"
+            v-model="item.done"
             :value="true"
             :unchecked-value="false"
             size="lg"
