@@ -32,6 +32,14 @@
             "
             :class="item.done ? 'input-with-line-through' : ''"
           ></b-form-input>
+          <b-button
+            @click="() => removeTask(item.id)"
+            size="sm"
+            variant="danger"
+            class="float-right ml-2"
+          >
+            <b-icon icon="x" aria-hidden="true" />
+          </b-button>
         </li>
       </ul>
     </div>
@@ -55,6 +63,19 @@ export default {
     });
   },
   methods: {
+    removeTask(id) {
+      const list = this.currentToDoList.items;
+      const index = this.currentToDoList.items.findIndex(
+        (item) => item.id === id
+      );
+
+      list.splice(index, 1);
+
+      this.$store.commit("setCurrentEditingToDoList", {
+        ...this.currentToDoList,
+        items: list,
+      });
+    },
     updateTaskDoneStatus(id, done) {
       const listIndex = this.currentToDoList.items.findIndex(
         (item) => item.id === id
