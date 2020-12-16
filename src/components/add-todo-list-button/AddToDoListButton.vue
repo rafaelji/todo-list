@@ -15,7 +15,7 @@ export default {
   name: "AddToDoListButton",
   methods: {
     addList() {
-      this.$store.commit("addNewToDoList", {
+      this.$store.dispatch("addNewToDoList", {
         id: new Date().getTime(),
         title: `#${this.toDoList.length + 1} New List`,
         items: [

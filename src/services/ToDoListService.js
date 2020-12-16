@@ -13,6 +13,13 @@ class ToDoListService {
 
     return resultData;
   }
+
+  async addNewToDoList(data) {
+    await listCollection.doc().set({
+      ...data,
+      userUid: auth.currentUser.uid,
+    });
+  }
 }
 
 export default new ToDoListService();

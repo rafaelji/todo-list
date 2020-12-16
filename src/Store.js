@@ -1,5 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import ToDoListService from "@/services/ToDoListService";
 
 Vue.use(Vuex);
 
@@ -49,6 +50,19 @@ const store = new Vuex.Store({
     },
     setCurrentEditingToDoList(state, currentToDoListEditing) {
       state.currentEditingToDoList = currentToDoListEditing;
+    },
+  },
+  actions: {
+    async addNewToDoList(context, newTodoData) {
+      try {
+        context.commit("addNewToDoList", newTodoData);
+        await ToDoListService.addNewToDoList(newTodoData);
+      } catch (error) {
+        context.commit("showNotification", {
+          type: "error",
+        });
+        console.log(error);
+      }
     },
   },
   getters: {
