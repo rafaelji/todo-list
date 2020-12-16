@@ -29,6 +29,15 @@ class ToDoListService {
 
     result.forEach((doc) => doc.ref.delete());
   }
+
+  async updateToDoList(data) {
+    const result = await listCollection
+      .where("userUid", "==", auth.currentUser.uid)
+      .where("id", "==", data.id)
+      .get();
+
+    await result.forEach(async (doc) => await doc.ref.update(data));
+  }
 }
 
 export default new ToDoListService();

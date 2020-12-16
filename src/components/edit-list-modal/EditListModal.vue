@@ -57,6 +57,7 @@ export default {
   mounted() {
     this.$root.$on("bv::modal::hidden", () => {
       this.$store.commit("editToDoList", null);
+      this.$store.dispatch("updateToDoList", this.currentToDoList);
     });
   },
   methods: {

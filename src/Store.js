@@ -75,6 +75,16 @@ const store = new Vuex.Store({
         console.log(error);
       }
     },
+    async updateToDoList(context, toDoListToEdit) {
+      try {
+        await ToDoListService.updateToDoList(toDoListToEdit);
+      } catch (error) {
+        context.commit("showNotification", {
+          type: "error",
+        });
+        console.log(error);
+      }
+    },
   },
   getters: {
     notification: (state) => {
