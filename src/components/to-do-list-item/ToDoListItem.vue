@@ -17,7 +17,9 @@
             :key="item.id"
             :class="item.done ? 'task-done' : ''"
           >
-            {{ item.value }}
+            <b-icon v-if="item.done" icon="check2" aria-hidden="true" />{{
+              item.value
+            }}
           </li>
         </ul>
       </b-card-text>
