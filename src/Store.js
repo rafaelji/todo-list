@@ -64,6 +64,17 @@ const store = new Vuex.Store({
         console.log(error);
       }
     },
+    async removeToDoList(context, toDoListIdToDelete) {
+      try {
+        context.commit("removeToDoList", toDoListIdToDelete);
+        await ToDoListService.deleteToDoListById(toDoListIdToDelete);
+      } catch (error) {
+        context.commit("showNotification", {
+          type: "error",
+        });
+        console.log(error);
+      }
+    },
   },
   getters: {
     notification: (state) => {

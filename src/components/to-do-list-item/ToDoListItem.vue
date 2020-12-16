@@ -40,7 +40,7 @@ export default {
   },
   methods: {
     removeList() {
-      this.$store.commit("removeToDoList", this.id);
+      this.$store.dispatch("removeToDoList", this.id);
     },
     editList() {
       this.$store.commit("editToDoList", this.id);

@@ -20,6 +20,15 @@ class ToDoListService {
       userUid: auth.currentUser.uid,
     });
   }
+
+  async deleteToDoListById(id) {
+    const result = await listCollection
+      .where("userUid", "==", auth.currentUser.uid)
+      .where("id", "==", id)
+      .get();
+
+    result.forEach((doc) => doc.ref.delete());
+  }
 }
 
 export default new ToDoListService();
