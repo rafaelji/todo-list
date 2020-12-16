@@ -16,7 +16,6 @@ const store = new Vuex.Store({
     currentEditingToDoList: {
       id: "",
       title: "",
-      imgUrl: "",
       items: [],
     },
   },

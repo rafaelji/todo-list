@@ -9,7 +9,6 @@
             :key="item.id"
             :id="item.id"
             :title="item.title"
-            :img-url="item.imgUrl"
             :items="item.items"
           />
         </b-col>

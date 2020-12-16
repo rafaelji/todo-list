@@ -1,14 +1,7 @@
 <template>
   <div>
     <EditListModal :id="id" />
-    <b-card
-      :img-src="imgUrl"
-      img-alt="Image"
-      img-top
-      tag="div"
-      style="max-width: 20rem"
-      class="mb-2"
-    >
+    <b-card tag="div" style="max-width: 20rem" class="mb-2">
       <b-card-text>
         <h1>{{ title }}</h1>
         <ul class="task-list">
@@ -43,7 +36,6 @@ export default {
   props: {
     id: Number,
     title: String,
-    imgUrl: String,
     items: Array,
   },
   methods: {
