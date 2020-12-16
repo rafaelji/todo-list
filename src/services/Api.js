@@ -1,5 +1,6 @@
 import * as firebase from "firebase/app";
 import "firebase/auth";
+import "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: process.env.VUE_APP_API_KEY,
@@ -14,5 +15,8 @@ const firebaseConfig = {
 firebase.default.initializeApp(firebaseConfig);
 
 const auth = firebase.default.auth();
+const db = firebase.default.firestore();
 
-export { auth };
+const listCollection = db.collection("toDoList");
+
+export { auth, db, listCollection };
